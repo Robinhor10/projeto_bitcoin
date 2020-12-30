@@ -1,30 +1,75 @@
-# bitcoin project
+ – Como criar um projeto quarkus novo via terminal ?
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Comando abaixo retirado do site : https://quarkus.io/guides/getting-started
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+mvn io.quarkus:quarkus-maven-plugin:1.9.0.Final:create \
+    -DprojectGroupId=org.acme \
+    -DprojectArtifactId=getting-started2 \
+    -DclassName="org.acme.getting.started.GreetingResource" \
+    -Dpath="/hello"
+cd getting-started2
 
-## Running the application in dev mode
+– Como buildar projeto no quarkus ?
 
-You can run your application in dev mode that enables live coding using:
-```
-./mvnw quarkus:dev
-```
+./mvnw compile quarkus:dev
 
-## Packaging and running the application
 
-The application can be packaged using `./mvnw package`.
-It produces the `bitcoin-1.0-SNAPSHOT-runner.jar` file in the `/target` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
+- Comando para visualizar quais versões do java a máquina tem instalada
+update-alternatives --list java
 
-The application is now runnable using `java -jar target/bitcoin-1.0-SNAPSHOT-runner.jar`.
+- Comando para alterar a versão do java
 
-## Creating a native executable
+sudo update-alternatives --config java
 
-You can create a native executable using: `./mvnw package -Pnative`.
+- Comando para alterar a versão do compilador java
+sudo update-alternatives --config javac
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: `./mvnw package -Pnative -Dquarkus.native.container-build=true`.
 
-You can then execute your native executable with: `./target/bitcoin-1.0-SNAPSHOT-runner`
+Como instalar o mysql server no ubuntu via terminal ?
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image. 
+sudo apt install mysql-server 
+sudo mysql_secure_installation 
+ com o comando: 
+sudo gedit /etc/mysql/mysql.conf.d/mysqld.cnf 
+	- Edite mysqld.cnf e mude bind-address para 0.0.0.0
+sudo service mysql restart 
+sudo mysql -u root ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'SuaSenha';
+
+- Como acessar o mysql server via terminal ?
+
+- Esteja no usuário sudo su
+- depois digite mysql -uroot -p
+- irá pedir a senha que você cadastro no momento de configurar o mysql local
+
+
+
+-------------------------------------------------------------------------------------------------------------
+
+DOCKER
+
+Instalar imagem de mysql no docker
+docker pull mysql:latest
+identificar quais imagens estão baixadas 
+docker images
+
+- nomeando a imagem e “setando” usuario e senha
+docker run --name db -d -p3306:3306 -e MYSQL_ROOT_PASSWORD=12345 mysql:latest
+
+executando a imagem criada “db”
+docker exec -it db /bin/bash
+
+parando um container
+docker stop ce97 (exemplo iniciais de um container)
+
+iniciando um container parado
+docker start ce97 (exemplo iniciais de um container)
+
+após executar é só acessar o mysql
+mysql -uroot -p12345
+
+removendo um container
+docker rm db
+
+
+
+(678) How To Create And Test MySQL Database Server in Docker On Ubuntu Linux - YouTube
